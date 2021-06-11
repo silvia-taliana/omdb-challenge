@@ -1,0 +1,55 @@
+/* navbar styling */
+.navbarContainer {
+    position: absolute;
+    height: 100px;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgb(181, 236, 238);
+}
+
+.navbarContainer input[type=text] {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 34px;
+    font-size: 17px;
+    background-color: transparent;
+    font-size: 30px;
+  }
+
+#searchBtn {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 34px;
+    margin-left: 20px;
+    background-color: transparent;
+}
+
+#searchIcon {
+    height: 30px;
+    width: 30px;
+}
+
+/* results styling */
+.resultList {
+    position: absolute;
+    margin-top: 100px;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 40%;
+    background-color: burlywood;
+}
+
+/* info box styling */
+.infobox {
+    position: absolute;
+    margin-top: 100px;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60%;
+    background-color: coral;
+}
