@@ -6,7 +6,7 @@ import InfoBox from "./components/InfoBox";
 
 function App() {
   return (
-    <div className="pageContainer">
+    <div>
       <Nav />
       <ResultList />
       <InfoBox />
