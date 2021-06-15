@@ -3,14 +3,15 @@ import "./App.css";
 import Nav from "./components/Nav";
 import ResultList from "./components/ResultList";
 import InfoBox from "./components/InfoBox";
+import { MovieProvider } from "./MovieContext";
 
 function App() {
   return (
-    <div>
+    <MovieProvider>
       <Nav />
       <ResultList />
       <InfoBox />
-    </div>
+    </MovieProvider>
   );
 }
 

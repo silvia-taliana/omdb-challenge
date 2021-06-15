@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MovieContext } from "../MovieContext";
 
 function ResultList() {
+    const [movies, setMovies] = useContext(MovieContext);
+
     return (
-        <div className="resultList">Result List</div>
+        <div className="resultList">
+            <div>Result List</div>
+            {movies.map(movie => (
+                <p>name={movie.name} year={movie.year} category={movie.category}</p>
+            ))}
+        </div>
     )
 }
 
