@@ -33,18 +33,17 @@ function RangeSlider() {
                 YEAR
       </Typography>
             <div id="sliderContainer">
-                <label className="sliderElement">1970</label>
+                <label className="sliderElement">{value[0]}</label>
                 <Slider
-                    min={1970}
+                    min={1900}
                     max={2021}
                     value={value}
                     onChange={handleChange}
-                    valueLabelDisplay="auto"
                     aria-labelledby="range-slider"
                     getAriaValueText={valuetext}
                     className="sliderElement"
                 />
-                <label className="sliderElement">2021</label>
+                <label className="sliderElement">{value[1]}</label>
             </div>
         </div>
     );
