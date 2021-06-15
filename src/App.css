@@ -38,6 +38,20 @@
     top: 20px;
 }
 
+#yearSlider {
+    position: absolute;
+    right: 400px;
+    top: 20px;
+}
+
+#sliderContainer {
+    display: flex;
+}
+
+.sliderElement {
+    margin-right: 5px;
+}
+
 /* results styling */
 .resultList {
     position: absolute;

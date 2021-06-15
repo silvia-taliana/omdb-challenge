@@ -2,14 +2,20 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form } from 'react-bootstrap';
+import RangeSlider from "./RangeSlider";
 
 function Nav() {
+
     return (
         <div className="navbarContainer">
             <Form>
                 <Form.Group>
                     <button id="searchBtn"><FontAwesomeIcon id="searchIcon" icon={faSearch} /></button>
                     <input type="text" placeholder="Search.."></input>
+                </Form.Group>
+
+                <Form.Group>
+                    <RangeSlider />
                 </Form.Group>
 
                 <Form.Group id="typeRadio">
