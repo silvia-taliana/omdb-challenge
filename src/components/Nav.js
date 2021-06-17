@@ -4,17 +4,28 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form } from 'react-bootstrap';
 import RangeSlider from "./RangeSlider";
 import { MovieContext } from "../MovieContext";
+import Axios from "axios";
 
 function Nav() {
     // using global state
+    // const [movies, setMovies] = useContext(MovieContext);
     const [search, setSearch] = useContext(MovieContext);
 
     // handling form input 
     function handleInputChange(event) {
         const { name, value } = event.target;
         setSearch({ ...search, [name]: value });
-        console.log(search);
+        // fetchMovieData();
     };
+
+    // const fetchMovieData = async () => {
+    //     await Axios.get(`http://www.omdbapi.com/?apikey=805cd57f&t=${search.title}`).then(
+    //         (res) => {
+    //             console.log(res.data);
+    //             setMovies(res.data);
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     return (
         <div className="navbarContainer">
@@ -25,7 +36,7 @@ function Nav() {
                 </Form.Group>
 
                 <Form.Group>
-                    <RangeSlider />
+                    <RangeSlider getYearRangeData={search} />
                 </Form.Group>
 
                 <Form.Group id="typeRadio">
@@ -37,7 +48,7 @@ function Nav() {
                         type="radio"
                         id="checkBtnAny"
                         onChange={handleInputChange}
-                        value="Any"
+                        value="any"
                     />
                     <Form.Check
                         inline
@@ -46,7 +57,7 @@ function Nav() {
                         type="radio"
                         id="checkBtnMovies"
                         onChange={handleInputChange}
-                        value="Movies"
+                        value="movie"
                     />
                     <Form.Check
                         inline
@@ -55,7 +66,7 @@ function Nav() {
                         type="radio"
                         id="checkBtnSeries"
                         onChange={handleInputChange}
-                        value="Series"
+                        value="series"
                     />
                     <Form.Check
                         inline
@@ -64,7 +75,7 @@ function Nav() {
                         type="radio"
                         id="checkBtnEpisodes"
                         onChange={handleInputChange}
-                        value="Episodes"
+                        value="episode"
                     />
                 </Form.Group>
             </Form>

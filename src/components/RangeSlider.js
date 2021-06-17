@@ -16,7 +16,7 @@ function valuetext(value) {
     return `${value}`;
 }
 
-function RangeSlider() {
+function RangeSlider(props) {
     // getting styles
     const classes = useStyles();
 
@@ -29,7 +29,6 @@ function RangeSlider() {
     // handling the change of the slider values 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        setSearch({ ...search, yearRangeStart: newValue[0], yearRangeEnd: newValue[1] });
     };
 
     return (
@@ -47,6 +46,7 @@ function RangeSlider() {
                     aria-labelledby="range-slider"
                     getAriaValueText={valuetext}
                     className="sliderElement"
+                    name="yearrange"
                 />
                 <label className="sliderElement">{value[1]}</label>
             </div>
