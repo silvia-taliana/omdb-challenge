@@ -4,28 +4,16 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form } from 'react-bootstrap';
 import RangeSlider from "./RangeSlider";
 import { MovieContext } from "../MovieContext";
-import Axios from "axios";
 
 function Nav() {
     // using global state
-    // const [movies, setMovies] = useContext(MovieContext);
     const [search, setSearch] = useContext(MovieContext);
 
     // handling form input 
     function handleInputChange(event) {
         const { name, value } = event.target;
         setSearch({ ...search, [name]: value });
-        // fetchMovieData();
     };
-
-    // const fetchMovieData = async () => {
-    //     await Axios.get(`http://www.omdbapi.com/?apikey=805cd57f&t=${search.title}`).then(
-    //         (res) => {
-    //             console.log(res.data);
-    //             setMovies(res.data);
-    //         })
-    //         .catch(err => console.log(err));
-    // }
 
     return (
         <div className="navbarContainer">

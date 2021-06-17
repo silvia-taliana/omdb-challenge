@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import { MovieContext } from "../MovieContext";
 
 // function to set width of slider
 const useStyles = makeStyles({
@@ -16,15 +15,12 @@ function valuetext(value) {
     return `${value}`;
 }
 
-function RangeSlider(props) {
+function RangeSlider() {
     // getting styles
     const classes = useStyles();
 
     // setting state for range of years the user selects 
     const [value, setValue] = React.useState([1980, 2000]);
-
-    // using global state
-    const [search, setSearch] = useContext(MovieContext);
 
     // handling the change of the slider values 
     const handleChange = (event, newValue) => {
