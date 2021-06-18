@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { Form } from 'react-bootstrap';
 import RangeSlider from "./RangeSlider";
-import { MovieContext } from "../MovieContext";
 
 function Nav() {
-    // using global state
-    const [search, setSearch] = useContext(MovieContext);
+    // setting state
+    const [search, setSearch] = useState({
+        title: "null", yearRange: [1900, 2021], type: "Any"
+    });
 
     // handling form input 
     function handleInputChange(event) {

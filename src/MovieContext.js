@@ -6,13 +6,12 @@ export const MovieContext = createContext();
 // data available in global state
 export const MovieProvider = (props) => {
     // setting up global state
-    const [movies, setMovies] = useState([]);
-    const [search, setSearch] = useState({
-        title: "null", yearRange: [1900, 2021], yearRangeStart: 1900, yearRangeEnd: 2021, type: "Any"
-    });
+    const [movies, setMovies] = useState([
+        { Poster: "", Title: "", Type: "", Year: "", imdbID: "" }
+    ]);
 
     return (
-        <MovieContext.Provider value={[movies, setMovies, search, setSearch]}>
+        <MovieContext.Provider value={[movies, setMovies]}>
             {props.children}
         </MovieContext.Provider>
     )

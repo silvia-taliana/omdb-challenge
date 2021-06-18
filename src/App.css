@@ -63,6 +63,15 @@
     background-color: burlywood;
 }
 
+.resultListItem {
+    display: flex;
+}
+
+.resultListMoviePic {
+    height: 100px;
+    margin: 5px;
+}
+
 /* info box styling */
 .infobox {
     position: absolute;
