@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../MovieContext";
 import Axios from "axios";
 
@@ -6,7 +6,17 @@ function ResultList() {
     // using global state
     const [movies, setMovies] = useContext(MovieContext);
 
-    // api call to get data for results list 
+    // setting local state for results list
+    const [resultList, setResultList] = useState([
+        {
+            Poster: "",
+            Title: "",
+            Type: "",
+            Year: "",
+            imdbID: ""
+        }
+    ]);
+
     useEffect(() => {
         // getting search parameters from url 
         let url_string = (window.location.href).toLowerCase();
@@ -32,19 +42,28 @@ function ResultList() {
                     let newMovieList = movieList.filter(movie => movie.Year >= yearRangeStart);
                     let filteredMovieList = newMovieList.filter(movie => movie.Year <= yearRangeEnd);
 
-                    // setting movie state 
+                    // setting movie and result states 
                     setMovies(filteredMovieList);
+                    setResultList(filteredMovieList);
                 })
                 .catch(err => console.log(err));
         }
     }, [setMovies]);
 
+    // getting movie id of selected movie and saving in state
+    function getMovieID(id) {
+        let movieSelection = { ...movies, selectedMovieID: id }
+        setMovies(movieSelection);
+    }
+
     return (
         <div className="resultList" >
             <div>Result List</div>
-            { movies.map(movie => (
-                <div className="resultListItem" key={movie.imdbID}>
-                    <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
+            { resultList.map(movie => (
+                <div key={movie.imdbID}>
+                    <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
+                        <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
+                    </button>
                 </div>
             ))
             }

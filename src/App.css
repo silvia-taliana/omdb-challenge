@@ -65,6 +65,9 @@
 
 .resultListItem {
     display: flex;
+    border: none;
+    background-color: burlywood;
+    width: 100%;
 }
 
 .resultListMoviePic {

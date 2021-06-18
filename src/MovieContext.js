@@ -7,7 +7,13 @@ export const MovieContext = createContext();
 export const MovieProvider = (props) => {
     // setting up global state
     const [movies, setMovies] = useState([
-        { Poster: "", Title: "", Type: "", Year: "", imdbID: "" }
+        {
+            Poster: "",
+            Title: "",
+            Type: "",
+            Year: "",
+            imdbID: ""
+        }
     ]);
 
     return (
