@@ -25,10 +25,15 @@ function ResultList() {
             }
 
             // api call and setting movie state with search results
-            Axios.get(`http://www.omdbapi.com/?apikey=805cd57f&s=${title}&y=${yearRangeStart}-${yearRangeEnd}&type=${type}`).then(
+            Axios.get(`http://www.omdbapi.com/?apikey=805cd57f&s=${title}&type=${type}`).then(
                 (res) => {
-                    console.log(res.data.Search);
-                    setMovies(res.data.Search);
+                    // filtering for year range 
+                    let movieList = res.data.Search;
+                    let newMovieList = movieList.filter(movie => movie.Year >= yearRangeStart);
+                    let filteredMovieList = newMovieList.filter(movie => movie.Year <= yearRangeEnd);
+
+                    // setting movie state 
+                    setMovies(filteredMovieList);
                 })
                 .catch(err => console.log(err));
         }
