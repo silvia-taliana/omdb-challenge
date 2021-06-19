@@ -56,19 +56,27 @@ function ResultList() {
         setMovies(movieSelection);
     }
 
-    return (
-        <div className="resultList" >
-            <div>Result List</div>
-            { resultList.map(movie => (
-                <div key={movie.imdbID}>
-                    <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
-                        <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
-                    </button>
-                </div>
-            ))
-            }
-        </div >
-    )
+    // returning results if movie has been searched 
+    if (resultList[0].Title) {
+        return (
+            <div className="resultList" >
+                <div>Result List</div>
+                { resultList.map(movie => (
+                    <div key={movie.imdbID}>
+                        <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
+                            <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
+                        </button>
+                    </div>
+                ))
+                }
+            </div >
+        )
+    }
+    else {
+        return (
+            <div className="resultList" >no movies found</div>
+        )
+    }
 }
 
 export default ResultList;
