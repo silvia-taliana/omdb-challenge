@@ -17,6 +17,9 @@ function ResultList() {
         }
     ]);
 
+    // setting state to give a message for no result being found in search
+    const [message, setMessage] = useState("Please search for a movie or television show");
+
     useEffect(() => {
         // getting search parameters from url 
         let url_string = (window.location.href).toLowerCase();
@@ -41,10 +44,24 @@ function ResultList() {
                     let movieList = res.data.Search;
                     let newMovieList = movieList.filter(movie => movie.Year >= yearRangeStart);
                     let filteredMovieList = newMovieList.filter(movie => movie.Year <= yearRangeEnd);
+                    console.log(res.data);
 
                     // setting movie and result states 
-                    setMovies(filteredMovieList);
-                    setResultList(filteredMovieList);
+                    if (filteredMovieList.length === 0) {
+                        setMessage("No result found");
+                        setResultList([
+                            {
+                                Poster: "",
+                                Title: "not found",
+                                Type: "",
+                                Year: "",
+                                imdbID: ""
+                            }
+                        ]);
+                    } else {
+                        setResultList(filteredMovieList);
+                        setMovies(filteredMovieList);
+                    }
                 })
                 .catch(err => console.log(err));
         }
@@ -56,8 +73,20 @@ function ResultList() {
         setMovies(movieSelection);
     }
 
-    // returning results if movie has been searched 
-    if (resultList[0].Title) {
+    console.log(movies);
+
+    // returning results if movie has been searched and not found message if no result returned
+    if (resultList[0].Title === "") {
+        return (
+            <div className="resultList" >{message}</div>
+        )
+    }
+    else if (resultList[0].Title === "not found") {
+        return (
+            <div className="resultList" >{message}</div>
+        )
+    }
+    else {
         return (
             <div className="resultList" >
                 <div>Result List</div>
@@ -70,11 +99,6 @@ function ResultList() {
                 ))
                 }
             </div >
-        )
-    }
-    else {
-        return (
-            <div className="resultList" >no movies found</div>
         )
     }
 }
