@@ -90,6 +90,13 @@
     width: 100%;
 }
 
+.resultListItem:focus {
+    background-color: rgb(181, 236, 238);
+    border-style: solid;
+    border-color: rgb(64, 158, 158);
+    border-radius: 1%;
+}
+
 .resultListMoviePic {
     height: 100px;
     margin: 20px;

@@ -15,9 +15,17 @@ function ResultList() {
             Title: "",
             Type: "",
             Year: "",
-            imdbID: ""
+            imdbID: "",
         }
     ]);
+
+    // setting state so selected movie will be set to active on click 
+    const [active, setActive] = useState("");
+
+    // initialising active state to false
+    useEffect(() => {
+        setActive("false");
+    }, [active]);
 
     // setting state to give a message for no result being found in search
     const [message, setMessage] = useState("Please search for a movie or television show");
@@ -56,7 +64,7 @@ function ResultList() {
                                 Title: "not found",
                                 Type: "",
                                 Year: "",
-                                imdbID: ""
+                                imdbID: "",
                             }
                         ]);
                     } else {
@@ -98,7 +106,7 @@ function ResultList() {
                     </div>
                     {resultList.map(movie => (
                         <div className="resultListItemContainer" key={movie.imdbID}>
-                            <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
+                            <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} active={active} onClick={() => getMovieID(movie.imdbID)}>
                                 <Row>
                                     <Col className="col-md-3">
                                         <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" />
