@@ -44,7 +44,7 @@ function InfoBox() {
                             <div id="titleInfo">
                                 <h1>{movieInfo.Title}</h1>
                                 <br />
-                                <p>{movieInfo.Rated} {movieInfo.Year} {movieInfo.Genre} {movieInfo.Runtime}</p>
+                                <p><span id="movieRating">{movieInfo.Rated}</span> {movieInfo.Year} &#8231; {movieInfo.Genre} &#8231; {movieInfo.Runtime}</p>
                                 <p>{movieInfo.Actors}</p>
                             </div>
                         </div>
@@ -52,7 +52,9 @@ function InfoBox() {
                 </Row>
                 <Row>
                     <Col id="plotContainer">
-                        <p>{movieInfo.Plot}</p>
+                        <div className="plotBorder"></div>
+                        <p id="plot">{movieInfo.Plot}</p>
+                        <div className="plotBorder"></div>
                     </Col>
                 </Row>
 
@@ -77,7 +79,7 @@ function InfoBox() {
     }
     else {
         return (
-            <div className="infobox"><p>select a movie</p></div>
+            <div className="infobox"></div>
         )
     }
 }

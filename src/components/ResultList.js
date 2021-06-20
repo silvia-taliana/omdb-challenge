@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../MovieContext";
 import Axios from "axios";
 import { Scrollbars } from "react-custom-scrollbars";
+import { Row, Col } from "react-bootstrap";
 
 function ResultList() {
     // using global state
@@ -48,7 +49,7 @@ function ResultList() {
 
                     // setting movie and result states 
                     if (filteredMovieList.length === 0) {
-                        setMessage("No result found");
+                        setMessage("No result found with that title, please try again");
                         setResultList([
                             {
                                 Poster: "",
@@ -76,23 +77,37 @@ function ResultList() {
     // returning results if movie has been searched and not found message if no result returned
     if (resultList[0].Title === "") {
         return (
-            <div className="resultList" >{message}</div>
+            <div className="resultList" id="resultMessagePleaseSearch">
+                <p>{message}</p>
+            </div>
         )
     }
     else if (resultList[0].Title === "not found") {
         return (
-            <div className="resultList" >{message}</div>
+            <div className="resultList" id="resultMessageNotFound" >
+                <p>{message}</p>
+            </div>
         )
     }
     else {
         return (
             <div className="resultList" >
                 <Scrollbars style={{ width: "100%", height: "100%" }}>
-                    <div>{resultList.length} RESULTS</div>
+                    <div id="totalResults">
+                        <p>{resultList.length} RESULTS</p>
+                    </div>
                     {resultList.map(movie => (
-                        <div key={movie.imdbID}>
+                        <div className="resultListItemContainer" key={movie.imdbID}>
                             <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
-                                <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
+                                <Row>
+                                    <Col className="col-md-3">
+                                        <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" />
+                                    </Col>
+                                    <Col className="col-md-9 resultMovieInfo">
+                                        <p id="resultTitle">{movie.Title}</p>
+                                        <p id="resultYear">{movie.Year}</p>
+                                    </Col>
+                                </Row>
                             </button>
                         </div>
                     ))

@@ -38,6 +38,7 @@ function Nav() {
                         id="checkBtnAny"
                         onChange={handleInputChange}
                         value="any"
+                        defaultChecked
                     />
                     <Form.Check
                         inline
