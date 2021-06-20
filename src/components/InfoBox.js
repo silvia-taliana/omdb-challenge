@@ -1,4 +1,3 @@
-// import React from "react";
 import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../MovieContext";
 import Axios from "axios";
@@ -57,9 +56,9 @@ function InfoBox() {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row id="ratingsRow">
                     {ratings.map(rating => (
-                        <Col>
+                        <Col key={rating.Source}>
                             <Row>
                                 <Col className="ratingsContainer">
                                     <p>{rating.Source}</p>

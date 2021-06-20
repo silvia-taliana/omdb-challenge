@@ -115,7 +115,9 @@
 
 #plotContainer {
     padding-left: 5%;
-    padding-right: 5%;;
+    padding-right: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .ratingsContainer {
@@ -123,7 +125,6 @@
     justify-content: center;
 }
 
-/* .rating {
-    flex-direction: column;
-    align-content: center;
-} */
+#ratingsRow {
+    padding-left: 30px;
+}

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "../MovieContext";
 import Axios from "axios";
+import { Scrollbars } from "react-custom-scrollbars";
 
 function ResultList() {
     // using global state
@@ -44,7 +45,6 @@ function ResultList() {
                     let movieList = res.data.Search;
                     let newMovieList = movieList.filter(movie => movie.Year >= yearRangeStart);
                     let filteredMovieList = newMovieList.filter(movie => movie.Year <= yearRangeEnd);
-                    console.log(res.data);
 
                     // setting movie and result states 
                     if (filteredMovieList.length === 0) {
@@ -73,8 +73,6 @@ function ResultList() {
         setMovies(movieSelection);
     }
 
-    console.log(movies);
-
     // returning results if movie has been searched and not found message if no result returned
     if (resultList[0].Title === "") {
         return (
@@ -89,15 +87,17 @@ function ResultList() {
     else {
         return (
             <div className="resultList" >
-                <div>Result List</div>
-                { resultList.map(movie => (
-                    <div key={movie.imdbID}>
-                        <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
-                            <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
-                        </button>
-                    </div>
-                ))
-                }
+                <Scrollbars style={{ width: "100%", height: "100%" }}>
+                    <div>{resultList.length} RESULTS</div>
+                    {resultList.map(movie => (
+                        <div key={movie.imdbID}>
+                            <button className="resultListItem" name="selectedMovieID" value={movie.imdbID} onClick={() => getMovieID(movie.imdbID)}>
+                                <img className="resultListMoviePic" src={movie.Poster} alt="movie poster" /><p>{movie.Title} released {movie.Year}</p>
+                            </button>
+                        </div>
+                    ))
+                    }
+                </Scrollbars>
             </div >
         )
     }
